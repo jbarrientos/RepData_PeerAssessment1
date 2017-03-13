@@ -143,7 +143,7 @@ medianActivitiesOK <- median(aggFilled)
 
 ```r
 ## activitiesOK$asDate <- as.Date(activitiesOK$date, format = "%Y-%m-%d")
-activityDays <- ifelse(weekdays(activities$asDate) %in% c("Monday","Tuesday","Wednesday","Thursday","Friday"), yes = "Weekday", no = "Weekend")
+activityDays <- ifelse(weekdays(activitiesOK$asDate) %in% c("Monday","Tuesday","Wednesday","Thursday","Friday"), yes = "Weekday", no = "Weekend")
 activitiesOK$day <- activityDays
 table(activitiesOK$day)
 ```
@@ -154,5 +154,14 @@ table(activitiesOK$day)
 ##   12960    4608
 ```
 ##### 2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
+
+
+```r
+avgActivitiesOK <- aggregate(steps ~ interval + day, data=activitiesOK, mean)
+
+ggplot(avgActivitiesOK,aes(x=interval,y=steps, col=day))+geom_point()+facet_wrap(~day) + geom_line() + theme_bw() + xlab("5 Min. Interv.") + ylab("AVG No. Steps")
+```
+
+![](PA1_template_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
 
 
