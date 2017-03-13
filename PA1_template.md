@@ -1,14 +1,17 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
 
 
 ## Loading and preprocessing the data
-```{r}
+
+```r
 library(ggplot2)
+```
+
+```
+## Warning: package 'ggplot2' was built under R version 3.3.2
+```
+
+```r
 if(!file.exists("./activity.csv") && file.exists("./activity.zip")){
         unzip("./activity.zip")
 }else if(!file.exists("./activity.zip")){
@@ -23,21 +26,27 @@ activities$asDate <- as.Date(activities$date, format = "%Y-%m-%d")
 
 ## What is mean total number of steps taken per day?
 ### 1. Calculate the total number of steps taken per day
-```{r}
-agg <- tapply(activities$steps, activities$date, sum, na.rm = T)
 
+```r
+agg <- tapply(activities$steps, activities$date, sum, na.rm = T)
 ```
 ### 2. Make a histogram of the total number of steps taken each day
-```{r}
+
+```r
 qplot(agg, main = "Number of steps taken per day")
 ```
 
-### 3. Calculate and report the mean and median of the total number of steps taken per day
-```{r}
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
 
+![](PA1_template_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+
+### 3. Calculate and report the mean and median of the total number of steps taken per day
+
+```r
 aggMean <- tapply(activities$steps, activities$date, mean, na.rm = T)
 aggMedian <- tapply(activities$steps, activities$date, median, na.rm = T)
-
 ```
 
 
