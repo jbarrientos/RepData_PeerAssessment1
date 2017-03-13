@@ -95,6 +95,9 @@ qplot(aggFilled, main = "Number of steps taken per day")
 meanActivitiesOK <- mean(aggFilled)
 medianActivitiesOK <- median(aggFilled)
 
+meanActivitiesOK
+medianActivitiesOK
+
 ```
 
 
